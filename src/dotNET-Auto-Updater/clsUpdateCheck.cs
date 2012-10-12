@@ -4,7 +4,10 @@ using System.Text;
 
 namespace dotNET_Auto_Updater
 {
-    public class Class1
+    class clsUpdateCheck
     {
+        public void CheckForUpdates(string url)
+        {
+        }
     }
 }
