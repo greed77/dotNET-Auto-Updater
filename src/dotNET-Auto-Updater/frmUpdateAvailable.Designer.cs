@@ -35,6 +35,11 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblChangelog = new System.Windows.Forms.Label();
             this.webChangelog = new System.Windows.Forms.WebBrowser();
+            this.btnUpdateNow = new System.Windows.Forms.Button();
+            this.btnSkipThisVersion = new System.Windows.Forms.Button();
+            this.btnRemindMeLater = new System.Windows.Forms.Button();
+            this.progDownload = new System.Windows.Forms.ProgressBar();
+            this.lblUrl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -87,9 +92,9 @@
             this.lblChangelog.AutoSize = true;
             this.lblChangelog.Location = new System.Drawing.Point(12, 84);
             this.lblChangelog.Name = "lblChangelog";
-            this.lblChangelog.Size = new System.Drawing.Size(61, 13);
+            this.lblChangelog.Size = new System.Drawing.Size(64, 13);
             this.lblChangelog.TabIndex = 5;
-            this.lblChangelog.Text = "Changelog:";
+            this.lblChangelog.Text = "Change log:";
             // 
             // webChangelog
             // 
@@ -99,14 +104,65 @@
             this.webChangelog.Location = new System.Drawing.Point(12, 100);
             this.webChangelog.MinimumSize = new System.Drawing.Size(20, 20);
             this.webChangelog.Name = "webChangelog";
-            this.webChangelog.Size = new System.Drawing.Size(375, 150);
+            this.webChangelog.Size = new System.Drawing.Size(424, 199);
             this.webChangelog.TabIndex = 6;
+            // 
+            // btnUpdateNow
+            // 
+            this.btnUpdateNow.Location = new System.Drawing.Point(332, 331);
+            this.btnUpdateNow.Name = "btnUpdateNow";
+            this.btnUpdateNow.Size = new System.Drawing.Size(104, 32);
+            this.btnUpdateNow.TabIndex = 7;
+            this.btnUpdateNow.Text = "Update now";
+            this.btnUpdateNow.UseVisualStyleBackColor = true;
+            this.btnUpdateNow.Click += new System.EventHandler(this.btnUpdateNow_Click);
+            // 
+            // btnSkipThisVersion
+            // 
+            this.btnSkipThisVersion.Location = new System.Drawing.Point(12, 331);
+            this.btnSkipThisVersion.Name = "btnSkipThisVersion";
+            this.btnSkipThisVersion.Size = new System.Drawing.Size(104, 32);
+            this.btnSkipThisVersion.TabIndex = 8;
+            this.btnSkipThisVersion.Text = "Skip this version";
+            this.btnSkipThisVersion.UseVisualStyleBackColor = true;
+            this.btnSkipThisVersion.Click += new System.EventHandler(this.btnSkipThisVersion_Click);
+            // 
+            // btnRemindMeLater
+            // 
+            this.btnRemindMeLater.Location = new System.Drawing.Point(172, 331);
+            this.btnRemindMeLater.Name = "btnRemindMeLater";
+            this.btnRemindMeLater.Size = new System.Drawing.Size(104, 32);
+            this.btnRemindMeLater.TabIndex = 9;
+            this.btnRemindMeLater.Text = "Remind me later";
+            this.btnRemindMeLater.UseVisualStyleBackColor = true;
+            this.btnRemindMeLater.Click += new System.EventHandler(this.btnRemindMeLater_Click);
+            // 
+            // progDownload
+            // 
+            this.progDownload.Location = new System.Drawing.Point(12, 305);
+            this.progDownload.Name = "progDownload";
+            this.progDownload.Size = new System.Drawing.Size(424, 23);
+            this.progDownload.TabIndex = 10;
+            // 
+            // lblUrl
+            // 
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Location = new System.Drawing.Point(254, 59);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(30, 13);
+            this.lblUrl.TabIndex = 11;
+            this.lblUrl.Text = "lblUrl";
             // 
             // frmUpdateAvailable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 262);
+            this.ClientSize = new System.Drawing.Size(448, 375);
+            this.Controls.Add(this.lblUrl);
+            this.Controls.Add(this.progDownload);
+            this.Controls.Add(this.btnRemindMeLater);
+            this.Controls.Add(this.btnSkipThisVersion);
+            this.Controls.Add(this.btnUpdateNow);
             this.Controls.Add(this.webChangelog);
             this.Controls.Add(this.lblChangelog);
             this.Controls.Add(this.lblTitle);
@@ -134,5 +190,10 @@
         internal System.Windows.Forms.Label lblTitle;
         internal System.Windows.Forms.Label lblChangelog;
         internal System.Windows.Forms.WebBrowser webChangelog;
+        private System.Windows.Forms.Button btnUpdateNow;
+        private System.Windows.Forms.Button btnSkipThisVersion;
+        private System.Windows.Forms.Button btnRemindMeLater;
+        private System.Windows.Forms.ProgressBar progDownload;
+        internal System.Windows.Forms.Label lblUrl;
     }
 }
