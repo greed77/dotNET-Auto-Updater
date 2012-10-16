@@ -8,7 +8,7 @@ namespace dotNET_Auto_Updater
 {
     public class clsUpdateCheck
     {
-        public static void Start(string update_xml)
+        public static void CheckForUpdates(string update_xml)
         {
             string update_title = "";
             string update_url = "";
