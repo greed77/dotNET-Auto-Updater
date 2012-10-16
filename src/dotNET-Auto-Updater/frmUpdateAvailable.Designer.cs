@@ -152,6 +152,7 @@
             this.lblUrl.Size = new System.Drawing.Size(30, 13);
             this.lblUrl.TabIndex = 11;
             this.lblUrl.Text = "lblUrl";
+            this.lblUrl.Visible = false;
             // 
             // frmUpdateAvailable
             // 
