@@ -25,6 +25,7 @@ namespace dotNET_Auto_Updater
         private void btnUpdateNow_Click(object sender, EventArgs e)
         {
             DownloadFile(this.lblUrl.Text);
+            //InstallUpdate();
         }
 
         private void btnSkipThisVersion_Click(object sender, EventArgs e)
@@ -40,15 +41,17 @@ namespace dotNET_Auto_Updater
         private void Completed(object sender, AsyncCompletedEventArgs e)
         {
             MessageBox.Show("Download completed!");
+            InstallUpdate();
         }
 
         private void DownloadFile(string remote_file)
         {
+            //MessageBox.Show(remote_file);
             string extension = Path.GetExtension(remote_file);
-            string filename = Path.GetFileName(remote_file);
-            string tempfilename = temppath + Guid.NewGuid().ToString() + "." + extension;
+            //string filename = Path.GetFileName(remote_file);
+            string tempfilename = Guid.NewGuid().ToString() + extension;
 
-            tempfilenamepath = Path.Combine(temppath, filename);
+            tempfilenamepath = Path.Combine(temppath, tempfilename);
 
             WebClient webClient = new WebClient();
             webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
