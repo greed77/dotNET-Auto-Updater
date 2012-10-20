@@ -125,6 +125,7 @@
             this.btnSkipThisVersion.TabIndex = 8;
             this.btnSkipThisVersion.Text = "Skip this version";
             this.btnSkipThisVersion.UseVisualStyleBackColor = true;
+            this.btnSkipThisVersion.Visible = false;
             this.btnSkipThisVersion.Click += new System.EventHandler(this.btnSkipThisVersion_Click);
             // 
             // btnRemindMeLater

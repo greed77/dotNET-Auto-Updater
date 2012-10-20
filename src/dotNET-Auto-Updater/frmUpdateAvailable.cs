@@ -10,7 +10,7 @@ namespace dotNET_Auto_Updater
     public partial class frmUpdateAvailable : Form
     {
         public string tempfilenamepath = "";
-        public string temppath = System.IO.Path.GetTempPath();
+        public string temppath = Path.GetTempPath();
 
         public frmUpdateAvailable()
         {
