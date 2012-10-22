@@ -119,18 +119,17 @@
             // 
             // btnSkipThisVersion
             // 
-            this.btnSkipThisVersion.Location = new System.Drawing.Point(12, 331);
+            this.btnSkipThisVersion.Location = new System.Drawing.Point(172, 331);
             this.btnSkipThisVersion.Name = "btnSkipThisVersion";
             this.btnSkipThisVersion.Size = new System.Drawing.Size(104, 32);
             this.btnSkipThisVersion.TabIndex = 8;
             this.btnSkipThisVersion.Text = "Skip this version";
             this.btnSkipThisVersion.UseVisualStyleBackColor = true;
-            this.btnSkipThisVersion.Visible = false;
             this.btnSkipThisVersion.Click += new System.EventHandler(this.btnSkipThisVersion_Click);
             // 
             // btnRemindMeLater
             // 
-            this.btnRemindMeLater.Location = new System.Drawing.Point(172, 331);
+            this.btnRemindMeLater.Location = new System.Drawing.Point(12, 331);
             this.btnRemindMeLater.Name = "btnRemindMeLater";
             this.btnRemindMeLater.Size = new System.Drawing.Size(104, 32);
             this.btnRemindMeLater.TabIndex = 9;

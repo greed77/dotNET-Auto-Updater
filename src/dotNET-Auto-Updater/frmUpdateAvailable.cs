@@ -24,13 +24,16 @@ namespace dotNET_Auto_Updater
 
         private void btnUpdateNow_Click(object sender, EventArgs e)
         {
-            DownloadFile(this.lblUrl.Text);
-            //InstallUpdate();
+            DownloadUpdate();
+            InstallUpdate();
         }
 
         private void btnSkipThisVersion_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.SkipVersion = clsUpdateCheck.update_version.ToString();
+            Properties.Settings.Default.Save();
+            MessageBox.Show("You won't be reminded about an update to this version.","Skip this version",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            this.Close();
         }
 
         private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -44,11 +47,9 @@ namespace dotNET_Auto_Updater
             InstallUpdate();
         }
 
-        private void DownloadFile(string remote_file)
+        private void DownloadUpdate()
         {
-            //MessageBox.Show(remote_file);
-            string extension = Path.GetExtension(remote_file);
-            //string filename = Path.GetFileName(remote_file);
+            string extension = Path.GetExtension(clsUpdateCheck.update_url);
             string tempfilename = Guid.NewGuid().ToString() + extension;
 
             tempfilenamepath = Path.Combine(temppath, tempfilename);
@@ -56,7 +57,7 @@ namespace dotNET_Auto_Updater
             WebClient webClient = new WebClient();
             webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-            webClient.DownloadFileAsync(new Uri(remote_file), tempfilenamepath);
+            webClient.DownloadFileAsync(new Uri(clsUpdateCheck.update_url), tempfilenamepath);
         }
 
         private void InstallUpdate()

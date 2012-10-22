@@ -3,18 +3,20 @@ using System.Xml;
 using System.Reflection;
 using System.Diagnostics;
 using System.Net;
+//using System.Windows.Forms;
 
 namespace dotNET_Auto_Updater
 {
     public class clsUpdateCheck
     {
-        public static void CheckForUpdates(string update_xml)
-        {
-            string update_title = "";
-            string update_url = "";
-            Version update_version = new Version("0.0.0.0");
-            string update_changelog = "";
+        public static string update_title = "";
+        public static string update_url = "";
+        public static Version update_version = new Version("0.0.0.0");
+        public static Version skip_version = new Version(Properties.Settings.Default.SkipVersion);
+        public static string update_changelog = "";
 
+        public static void CheckForUpdates(string update_xml, bool force_update = false)
+        {
             try
             {
                 XmlDocument xml = new XmlDocument();
@@ -51,8 +53,10 @@ namespace dotNET_Auto_Updater
                 if (update_version > current_version)
                 {
                     Debug.WriteLine("update is available");
-
-                    frm.Show();
+                    if (update_version != skip_version || force_update == true)
+                    {
+                        frm.Show();
+                    }
                 }
                 else
                 {
