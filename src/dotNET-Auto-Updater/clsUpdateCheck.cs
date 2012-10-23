@@ -3,7 +3,7 @@ using System.Xml;
 using System.Reflection;
 using System.Diagnostics;
 using System.Net;
-//using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace dotNET_Auto_Updater
 {
@@ -49,8 +49,8 @@ namespace dotNET_Auto_Updater
                     update_url = item["url"].InnerText;
                     Debug.WriteLine("url:" + update_url);
 
-                    update_action = item["action"].InnerText;
-                    Debug.WriteLine("action:" + update_action);
+                    //update_action = item["action"].InnerText;
+                    //Debug.WriteLine("action:" + update_action);
                 }
 
                 Version current_version = Assembly.GetEntryAssembly().GetName().Version;
@@ -108,36 +108,22 @@ namespace dotNET_Auto_Updater
                     self_update_url = item["url"].InnerText;
                     Debug.WriteLine("url:" + self_update_url);
 
-                    self_update_action = item["action"].InnerText;
-                    Debug.WriteLine("action:" + self_update_action);
+                    //self_update_action = item["action"].InnerText;
+                    //Debug.WriteLine("action:" + self_update_action);
                 }
 
                 Version self_current_version = Assembly.GetCallingAssembly().GetName().Version;
                 Debug.WriteLine(self_current_version.ToString());
 
-                //frmUpdateAvailable frm = new frmUpdateAvailable();
-
-                //frm.lblCurrentVersion.Text = self_current_version.ToString();
-                //frm.lblTitle.Text = update_title.ToString();
-                //frm.lblVersionAvailable.Text = update_version.ToString();
-                //frm.lblUrl.Text = update_url.ToString();
-
-                //WebClient client = new WebClient();
-                //String htmlCode = client.DownloadString(update_changelog.ToString());
-                //frm.webChangelog.DocumentText = htmlCode;
-
-                //if (self_update_version > self_current_version)
-                //{
-                //    Debug.WriteLine("update is available");
-                //    if (update_version != skip_version || force_update == true)
-                //    {
-                //        frm.Show();
-                //    }
-                //}
-                //else
-                //{
-                //    Debug.WriteLine("no update");
-                //}
+                if (self_update_version > self_current_version)
+                {
+                    Debug.WriteLine("update is available");
+                    MessageBox.Show("update the updater");
+                }
+                else
+                {
+                    Debug.WriteLine("no update");
+                }
             }
             catch (Exception level1)
             {
