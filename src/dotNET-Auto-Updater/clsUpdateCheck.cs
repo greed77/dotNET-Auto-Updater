@@ -49,7 +49,7 @@ namespace dotNET_Auto_Updater
                     update_url = item["url"].InnerText;
                     Debug.WriteLine("url:" + update_url);
 
-                    //update_action = item["action"].InnerText;
+                    //update_action = item.Attributes["action"].Value;
                     //Debug.WriteLine("action:" + update_action);
                 }
 
@@ -108,7 +108,7 @@ namespace dotNET_Auto_Updater
                     self_update_url = item["url"].InnerText;
                     Debug.WriteLine("url:" + self_update_url);
 
-                    //self_update_action = item["action"].InnerText;
+                    //self_update_action = item.Attributes["action"].Value;
                     //Debug.WriteLine("action:" + self_update_action);
                 }
 
