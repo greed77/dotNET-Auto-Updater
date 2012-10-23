@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+	<item>
+		<title>New version is available for dotNET-Auto-Updater</title>
+		<version>0.7.0.0</version>
+		<url>https://raw.github.com/greed77/dotNET-Auto-Updater/master/dotNET-Auto-Updater.dll</url>
+		<changelog>https://raw.github.com/greed77/dotNET-Auto-Updater/master/changelog.htm</changelog>
+	</item>
+</items>
