@@ -49,8 +49,8 @@ namespace dotNET_Auto_Updater
                     update_url = item["url"].InnerText;
                     Debug.WriteLine("url:" + update_url);
 
-                    //update_action = item.Attributes["action"].Value;
-                    //Debug.WriteLine("action:" + update_action);
+                    update_action = xml.SelectSingleNode("/items/item/@action").Value;
+                    Debug.WriteLine("action:" + update_action);
                 }
 
                 Version current_version = Assembly.GetEntryAssembly().GetName().Version;
@@ -108,8 +108,8 @@ namespace dotNET_Auto_Updater
                     self_update_url = item["url"].InnerText;
                     Debug.WriteLine("url:" + self_update_url);
 
-                    //self_update_action = item.Attributes["action"].Value;
-                    //Debug.WriteLine("action:" + self_update_action);
+                    self_update_action = xml.SelectSingleNode("/items/item/@action").Value;
+                    Debug.WriteLine("action:" + self_update_action);
                 }
 
                 Version self_current_version = Assembly.GetCallingAssembly().GetName().Version;
@@ -118,7 +118,7 @@ namespace dotNET_Auto_Updater
                 if (self_update_version > self_current_version)
                 {
                     Debug.WriteLine("update is available");
-                    MessageBox.Show("update the updater");
+                    // MessageBox.Show("update the updater");
                 }
                 else
                 {
