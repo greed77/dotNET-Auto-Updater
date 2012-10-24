@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Net;
@@ -70,47 +70,54 @@ namespace dotNET_Auto_Updater
             String cmd = Path.Combine(temppath, Guid.NewGuid() + ".cmd");
             String installerCMD;
 
-            // get the file type
-            if (Path.GetExtension(tempfilenamepath).ToLower().Equals(".exe"))
+            // check if update is copy
+            if (clsUpdateCheck.self_update_action == "copy")
             {
-                // build the command line 
-                installerCMD = tempfilenamepath;
-            }
-            else if (Path.GetExtension(tempfilenamepath).ToLower().Equals(".msi"))
-            {
-                // build the command line
-                installerCMD = "msiexec /i \"" + tempfilenamepath + "\"";
             }
             else
             {
-                //sparkle.ReportDiagnosticMessage("Updater not supported, please execute " + tempfilename + " manually");
-                MessageBox.Show("Updater not supported, please execute " + tempfilenamepath + " manually", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(-1);
-                return;
+                // get the file type
+                if (Path.GetExtension(tempfilenamepath).ToLower().Equals(".exe"))
+                {
+                    // build the command line 
+                    installerCMD = tempfilenamepath;
+                }
+                else if (Path.GetExtension(tempfilenamepath).ToLower().Equals(".msi"))
+                {
+                    // build the command line
+                    installerCMD = "msiexec /i \"" + tempfilenamepath + "\"";
+                }
+                else
+                {
+                    //sparkle.ReportDiagnosticMessage("Updater not supported, please execute " + tempfilename + " manually");
+                    MessageBox.Show("Updater not supported, please execute " + tempfilenamepath + " manually", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(-1);
+                    return;
+                }
+
+                // generate the batch file
+                //sparkle.ReportDiagnosticMessage("Generating MSI batch in " + Path.GetFullPath(cmd));
+
+                StreamWriter write = new StreamWriter(cmd);
+
+                write.WriteLine(installerCMD);
+                write.WriteLine("cd " + workingDir);
+                write.WriteLine(cmdLine);
+
+                write.Close();
+
+                // report
+                //sparkle.ReportDiagnosticMessage("Going to execute batch: " + cmd);
+
+                // start the installer helper
+                Process process = new Process();
+                process.StartInfo.FileName = cmd;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.Start();
+
+                // quit the app
+                Environment.Exit(0);
             }
-
-            // generate the batch file
-            //sparkle.ReportDiagnosticMessage("Generating MSI batch in " + Path.GetFullPath(cmd));
-
-            StreamWriter write = new StreamWriter(cmd);
-
-            write.WriteLine(installerCMD);
-            write.WriteLine("cd " + workingDir);
-            write.WriteLine(cmdLine);
-
-            write.Close();
-
-            // report
-            //sparkle.ReportDiagnosticMessage("Going to execute batch: " + cmd);
-
-            // start the installer helper
-            Process process = new Process();
-            process.StartInfo.FileName = cmd;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            process.Start();
-
-            // quit the app
-            Environment.Exit(0);
         }
     }
 }
