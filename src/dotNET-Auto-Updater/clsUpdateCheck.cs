@@ -22,11 +22,12 @@ namespace dotNET_Auto_Updater
         public static string update_action = "";
 
         public static Version skip_version = new Version(Properties.Settings.Default.SkipVersion);
+        public static Version skip_version_self = new Version(Properties.Settings.Default.SkipVersionSelf);
         
         public static void CheckForUpdates(string update_xml, bool force_update = false)
         {
             // update self first, if needed
-            SelfUpdate();
+            SelfUpdate(force_update);
 
             // next check for updates to app
             try
@@ -86,7 +87,7 @@ namespace dotNET_Auto_Updater
             }
         }
 
-        private static void SelfUpdate()
+        private static void SelfUpdate(bool force_update = false)
         {
             try
             {
@@ -115,10 +116,25 @@ namespace dotNET_Auto_Updater
                 Version self_current_version = Assembly.GetCallingAssembly().GetName().Version;
                 Debug.WriteLine(self_current_version.ToString());
 
+                frmUpdateAvailable frm = new frmUpdateAvailable("self");
+
+                frm.lblCurrentVersion.Text = self_current_version.ToString();
+                frm.lblTitle.Text = self_update_title.ToString();
+                frm.lblVersionAvailable.Text = self_update_version.ToString();
+                frm.lblUrl.Text = self_update_url.ToString();
+
+                WebClient client = new WebClient();
+                String htmlCode = client.DownloadString(self_update_changelog.ToString());
+                frm.webChangelog.DocumentText = htmlCode;
+
                 if (self_update_version > self_current_version)
                 {
                     Debug.WriteLine("update is available");
-                    // MessageBox.Show("update the updater");
+                    //MessageBox.Show("There's an update to the updater, the app will now close and restart automatically.");
+                    if (self_update_version != skip_version_self || force_update == true)
+                    {
+                        frm.Show();
+                    }
                 }
                 else
                 {
