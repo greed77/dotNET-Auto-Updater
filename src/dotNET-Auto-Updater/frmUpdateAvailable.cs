@@ -33,7 +33,7 @@ namespace dotNET_Auto_Updater
         private void btnUpdateNow_Click(object sender, EventArgs e)
         {
             DownloadUpdate();
-            InstallUpdate();
+            //InstallUpdate();
         }
 
         private void btnSkipThisVersion_Click(object sender, EventArgs e)
